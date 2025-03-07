@@ -11,28 +11,22 @@ body {
     font-family: 'Bounded-Regular', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #e5dac6; /* Цвета в стиле картины */
+    background-color: #e5dac6; /* Цвета картины */
     color: #3a2e25;
     text-align: center;
 }
 
-/* Заголовок */
-header {
-    padding: 20px;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), transparent);
-    color: white;
-    font-size: 20px;
-}
-
-/* Основное изображение */
+/* Секция с картиной */
 .image-section {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 60vh;
     position: relative;
+    cursor: pointer;
 }
 
+/* Контейнер для изображения */
 .image-container {
     position: relative;
     max-width: 90%;
@@ -41,29 +35,118 @@ header {
 
 .image-container img {
     width: 100%;
-    max-width: 1200px;
     height: auto;
-    display: block;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease;
 }
 
-/* При наведении увеличивает картину */
-.image-container:hover img {
-    transform: scale(1.05);
+/* Стиль для описания */
+.image-description {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #3a2e25;
+}
+
+/* Градиент на картине */
+.main-image {
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.main-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
+    z-index: 1; /* Задний слой для градиента */
+}
+
+/* Текст поверх изображения */
+.title {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    z-index: 2; /* Передний слой для текста */
+}
+
+.title h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+.title p a {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
 }
 
 /* Описание картины */
-.description {
+.description-container {
     padding: 20px;
+    background-color: white;
     max-width: 800px;
     margin: auto;
-    font-size: 18px;
 }
 
-/* Футер */
-footer {
-    padding: 10px;
-    background-color: #3a2e25;
+/* Кнопка для увеличения картины */
+.view-btn {
+    background-color: #007BFF;
     color: white;
-    font-size: 14px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.view-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для увеличенной картины */
+.fullscreen-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Затемнение фона */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.fullscreen-container img {
+    max-width: 90%;
+    max-height: 90%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Кнопка закрытия */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.fullscreen-container.open {
+    display: flex;
 }
