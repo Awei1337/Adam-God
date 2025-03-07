@@ -1,33 +1,57 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Создание Адама</title>
+    <title>Картина "Создание Адама"</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Создание Адама</h1>
-        <p>Микеланджело, 1511—1512</p>
-    </header>
-
-    <section class="image-section">
-        <div class="image-container">
-            <img src="Adam.jpg" alt="Создание Адама">
+<script src="script.js"></script>
+    <!-- Секция с картиной -->
+    <div class="image-section">
+        <div class="image-container" id="imageContainer">
+            <img src="Adam.jpg" alt="Создание Адама" id="mainImage">
         </div>
-    </section>
+    </div>
 
-    <section class="description">
-        <h2>О картине</h2>
-        <p>
-            «Создание Адама» — одна из самых известных фресок Микеланджело, находящаяся на потолке Сикстинской капеллы. 
-            Картина изображает момент, когда Бог даёт жизнь первому человеку, Адаму, едва касаясь его пальца.
-        </p>
-    </section>
+    <!-- Кнопка для увеличения картинки -->
+    <button class="view-btn" id="viewBtn">Рассмотреть картину</button>
 
-    <footer>
-        <p>© 2025 Автор сайта: Awei</p>
-    </footer>
+    <!-- Описание картины -->
+    <div class="description-container">
+        <h2>Создание Адама</h2>
+        <p>Художник: Микеланджело</p>
+        <p class="image-description">Это знаменитое произведение искусства было создано в 1512 году и является частью фрески на потолке Сикстинской капеллы. Оно изображает момент, когда Бог и Адам протягивают руки друг к другу, создавая символическое соединение человеческой и божественной природы.</p>
+    </div>
+
+    <!-- Разворачивающийся режим картины -->
+    <div class="fullscreen-container" id="fullscreenContainer">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <img src="Adam.jpg" alt="Создание Адама" id="fullscreenImage">
+    </div>
+
+    <script>
+        const viewBtn = document.getElementById('viewBtn');
+        const fullscreenContainer = document.getElementById('fullscreenContainer');
+        const closeBtn = document.getElementById('closeBtn');
+        const fullscreenImage = document.getElementById('fullscreenImage');
+
+        // Открыть картину на полный экран
+        viewBtn.addEventListener('click', function() {
+            fullscreenContainer.classList.add('open');
+        });
+
+        // Закрыть картину
+        closeBtn.addEventListener('click', function() {
+            fullscreenContainer.classList.remove('open');
+        });
+
+        // При клике на картину увеличивать
+        fullscreenImage.addEventListener('click', function() {
+            fullscreenImage.style.transform = fullscreenImage.style.transform === 'scale(1.2)' ? 'scale(1)' : 'scale(1.2)';
+        });
+    </script>
+
 </body>
 </html>
